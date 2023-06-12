@@ -23,9 +23,28 @@ class LinkedList {
 
     return this;
   }
+
+  pop() {
+    let pre;
+    let temp = this.head;
+
+    // TODO: add conditionals in case LL is empty or just have one item etc.
+    while (temp.next !== null) {
+      pre = temp;
+      temp = temp.next;
+    }
+
+    pre.next = null;
+    this.tail = pre;
+    this.length -= 1;
+
+    return this;
+  }
 }
 
-const ll = new LinkedList(4);
-ll.push(5);
+const ll = new LinkedList(1);
+ll.push(2);
+ll.push(3);
+ll.pop();
 
 console.log(JSON.stringify(ll, null, 2));
