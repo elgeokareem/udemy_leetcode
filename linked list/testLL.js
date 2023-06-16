@@ -7,19 +7,31 @@ class Node {
 
 class LinkedList {
   constructor(value) {
-    const startNode = new Node(value);
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
 
-    this.head = startNode;
-    this.tail = startNode;
-    this.length = 1;
+    if (value) {
+      const newNode = new Node(value);
+      this.head = newNode;
+      this.tail = newNode;
+      this.length = 1;
+    }
   }
 
   push(value) {
     const newNode = new Node(value);
 
+    if (this.length === 0) {
+      this.head = newNode;
+      this.tail = newNode;
+      this.length = 1;
+      return this;
+    }
+
     this.tail.next = newNode;
     this.tail = newNode;
-    this.length += 1;
+    this.length++;
 
     return this;
   }
@@ -30,27 +42,24 @@ class LinkedList {
     }
 
     let pre = this.head;
-    let temp = this.head;
-
+    let temp = this.head.next;
     while (temp.next !== null) {
       pre = temp;
       temp = temp.next;
     }
 
+    pre.next = null;
     this.tail = pre;
-    this.tail.next = null;
-    this.length -= 1;
-
-    if (this.length === 0) {
-      this.head = null;
-      this.tail = null;
-    }
+    this.length--;
 
     return temp;
   }
 }
 
-const ll = new LinkedList(1);
+const ll = new LinkedList();
+ll.push(5);
+ll.push(6);
+ll.push(7);
 ll.pop();
 
-console.log(JSON.stringify(ll, null, 2));
+console.log(ll);
