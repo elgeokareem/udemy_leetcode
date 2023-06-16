@@ -54,12 +54,29 @@ class LinkedList {
 
     return temp;
   }
+
+  unshift(value) {
+    const newNode = new Node(value);
+
+    if (this.length === 0) {
+      this.head = newNode;
+      this.tail = newNode;
+      this.length = 1;
+      return this;
+    }
+
+    newNode.next = this.head;
+    this.head = newNode;
+    this.length++;
+    return this;
+  }
 }
 
 const ll = new LinkedList();
 ll.push(5);
 ll.push(6);
 ll.push(7);
+ll.unshift(4);
 ll.pop();
 
-console.log(ll);
+console.log(JSON.stringify(ll, null, 2));
