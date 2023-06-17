@@ -70,6 +70,8 @@ class LinkedList {
     this.length++;
     return this;
   }
+
+  // shift
 }
 
 const ll = new LinkedList();
