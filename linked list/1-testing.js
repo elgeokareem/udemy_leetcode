@@ -39,6 +39,7 @@ class LinkedList {
     this.length++;
   }
 
+  // return poped item
   pop() {
     if (this.length === 0) return;
     if (this.length === 1) {
@@ -57,6 +58,35 @@ class LinkedList {
     this.tail = temp;
     this.length--;
   }
+
+  // agergar nodo al principio de la linkedlist
+  unshift(value) {
+    if (this.length === 0) {
+      this.push(value);
+      return;
+    }
+
+    const node = new Node(value);
+    node.next = this.head;
+    this.head = node;
+    this.length++;
+  }
+
+  // quitar el primer nodo y devolverlo
+  shift() {
+    if (this.length === 0) return undefined;
+    if (this.length === 1) this.pop();
+
+    const temp = this.head
+    this.head = this.head.next
+    this.length--
+
+    return temp
+  }
+
+  get(index) {
+    // El argumento es el index.
+  }
 }
 
 const ll = new LinkedList();
@@ -64,5 +94,7 @@ const ll = new LinkedList();
 ll.push(1);
 ll.push(2);
 ll.push(3);
+ll.unshift(0);
+ll.shift()
 
 ll.print();
