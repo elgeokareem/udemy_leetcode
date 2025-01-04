@@ -77,15 +77,22 @@ class LinkedList {
     if (this.length === 0) return undefined;
     if (this.length === 1) this.pop();
 
-    const temp = this.head
-    this.head = this.head.next
-    this.length--
+    const temp = this.head;
+    this.head = this.head.next;
+    this.length--;
 
-    return temp
+    return temp;
   }
 
   get(index) {
-    // El argumento es el index.
+    if (index < 0 || index >= this.length) return undefined;
+
+    let temp = this.head;
+    for (let i = 0; i < index; i++) {
+      temp = temp.next;
+    }
+
+    return temp;
   }
 }
 
@@ -95,6 +102,6 @@ ll.push(1);
 ll.push(2);
 ll.push(3);
 ll.unshift(0);
-ll.shift()
+ll.shift();
 
 ll.print();
