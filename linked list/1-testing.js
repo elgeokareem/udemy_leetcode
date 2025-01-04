@@ -94,6 +94,17 @@ class LinkedList {
 
     return temp;
   }
+
+  set(index, value) {
+    if (index < 0 || index >= this.length) return undefined;
+
+    let temp = this.head;
+    for (let i = 0; i < index; i++) {
+      temp = temp.next;
+    }
+
+    temp.value = value;
+  }
 }
 
 const ll = new LinkedList();
@@ -103,5 +114,6 @@ ll.push(2);
 ll.push(3);
 ll.unshift(0);
 ll.shift();
+ll.set((1, 5), value);
 
 ll.print();
