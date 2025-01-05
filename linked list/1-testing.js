@@ -105,6 +105,24 @@ class LinkedList {
 
     temp.value = value;
   }
+
+  // insert node at given index
+  insert(index, value) {
+    if (index < 0 || index >= this.length) return undefined;
+
+    let prev = this.head;
+    let temp = this.head;
+    for (let i = 0; i < index; i++) {
+      prev = temp;
+      temp = temp.next;
+    }
+
+    const node = new Node(value);
+
+    node.next = temp;
+    prev.next = node;
+    this.length++;
+  }
 }
 
 const ll = new LinkedList();
@@ -114,6 +132,7 @@ ll.push(2);
 ll.push(3);
 ll.unshift(0);
 ll.shift();
-ll.set((1, 5), value);
+ll.set(1, 5);
+ll.insert(1, 4);
 
 ll.print();
