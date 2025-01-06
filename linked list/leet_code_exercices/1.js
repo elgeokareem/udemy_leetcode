@@ -85,26 +85,8 @@ class LinkedList {
   }
 
   findMiddleNode() {
-    let slow = this.head;
-    let fast = this.head;
-
-    // even condition: fast = null
-    // odd condition: fast.next = null
-    while (fast && fast.next) {
-      console.log("slow", slow);
-      console.log("fast", fast);
-      slow = slow.next;
-      fast = fast.next.next;
-    }
-
-    return slow;
+    // TODO: redo the exercise again
   }
-  // WRITE THE FINDMIDDLENODE METHOD HERE //
-  //                                      //
-  //                                      //
-  //                                      //
-  //                                      //
-  //////////////////////////////////////////
 }
 
 let myLinkedList = new LinkedList(1);
