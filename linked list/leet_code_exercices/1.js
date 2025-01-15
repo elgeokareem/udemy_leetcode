@@ -85,7 +85,15 @@ class LinkedList {
   }
 
   findMiddleNode() {
-    // TODO: redo the exercise again
+    let slow = this.head;
+    let fast = this.head;
+
+    while (fast && fast.next) {
+      slow = slow.next; // 1 step
+      fast = fast.next.next; // 2 steps
+    }
+
+    return slow;
   }
 }
 
