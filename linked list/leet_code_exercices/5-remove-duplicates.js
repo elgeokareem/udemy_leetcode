@@ -26,3 +26,83 @@
 // The linked list should now have the following value: 3
 //
 // Remember to update the length.
+
+class Node {
+  constructor(value) {
+    return {
+      value: value,
+      next: null,
+    };
+  }
+}
+
+class LL {
+  constructor(value) {
+    const node = new Node(value);
+    this.head = node;
+    this.tail = this.head;
+    this.length = 1;
+  }
+
+  print() {
+    console.log(JSON.stringify(this, null, 2));
+  }
+
+  push(value) {
+    const node = new Node(value);
+
+    this.tail.next = node;
+    this.tail = node;
+    this.length++;
+  }
+
+  removeNode(index) {
+    console.log("Index to remove", index);
+    let a = this.head;
+    let b = this.head.next;
+
+    let i = 0;
+    while (i < index) {
+      if (i === index - 1) {
+        a.next = b.next;
+        this.length--;
+      }
+      if (i === this.length - 1) {
+        this.tail = b.next;
+      }
+
+      a = a.next;
+      b = b.next;
+      i++;
+    }
+
+    this.print();
+  }
+
+  removeDuplicates() {
+    let i = 0;
+    let currentNode = this.head;
+    const s = new Set();
+
+    while (i < this.length) {
+      const isValueRepeated = s.has(currentNode.value);
+      if (!isValueRepeated) {
+        i++;
+        s.add(currentNode.value);
+        currentNode = currentNode.next;
+        continue;
+      }
+
+      currentNode = currentNode.next;
+      this.removeNode(i);
+    }
+  }
+}
+
+const ll = new LL(1);
+ll.push(2);
+ll.push(3);
+ll.push(1);
+ll.push(4);
+ll.removeDuplicates();
+ll.print();
