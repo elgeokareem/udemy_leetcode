@@ -79,30 +79,54 @@ class LL {
     this.print();
   }
 
+  // Bad implementation since im iterating the LL for any repeated value
+  // removeDuplicates() {
+  //   let i = 0;
+  //   let currentNode = this.head;
+  //   const s = new Set();
+  //
+  //   while (i < this.length) {
+  //     const isValueRepeated = s.has(currentNode.value);
+  //     if (!isValueRepeated) {
+  //       i++;
+  //       s.add(currentNode.value);
+  //       currentNode = currentNode.next;
+  //       continue;
+  //     }
+  //
+  //     currentNode = currentNode.next;
+  //     this.removeNode(i);
+  //   }
+  // }
+
   removeDuplicates() {
-    let i = 0;
-    let currentNode = this.head;
+    let previous = null;
+    let current = this.head;
     const s = new Set();
 
-    while (i < this.length) {
-      const isValueRepeated = s.has(currentNode.value);
-      if (!isValueRepeated) {
-        i++;
-        s.add(currentNode.value);
-        currentNode = currentNode.next;
+    if (!current) {
+      return;
+    }
+
+    while (current !== null) {
+      const isDuplicated = s.has(current.value);
+
+      if (!isDuplicated) {
+        s.add(current.value);
+        previous = current;
+        current = current.next;
         continue;
       }
 
-      currentNode = currentNode.next;
-      this.removeNode(i);
+      previous.next = current.next;
+      this.length--;
+      current = current.next;
     }
   }
 }
 
 const ll = new LL(1);
-ll.push(2);
-ll.push(3);
 ll.push(1);
-ll.push(4);
+ll.push(1);
 ll.removeDuplicates();
 ll.print();
